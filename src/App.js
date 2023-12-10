@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Input, Form, Select } from "antd";
+import SupportModal from "./modals/SupportModal";
 
 function App() {
   const [form] = Form.useForm();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [conversationState, setConversationState] = useState([]);
   const [errorMessage, setErrorMessage] = useState({});
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
   const handleFileRead = (e) => {
     const content = e.target.result;
@@ -78,6 +85,12 @@ function App() {
   return (
     <div className="relative w-screen h-screen bg-blue-400">
       <div className="flex flex-col justify-center absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] bg-white px-[30px] py-[20px] rounded-lg">
+        <p
+          className="absolute top-[30px] right-[20px] cursor-pointer underline"
+          onClick={showModal}
+        >
+          Hướng dẫn
+        </p>
         <p className="text-center text-[25px] font-bold">
           Thu thập câu hỏi ChatGPT
         </p>
@@ -149,6 +162,10 @@ function App() {
           </button>
         </Form>
       </div>
+      <SupportModal
+        isModalOpen={isModalOpen}
+        handleCancel={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }
