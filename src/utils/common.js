@@ -15,4 +15,8 @@ export const listLanguages = [
     label: "Go Lang",
     value: "go",
   },
+  {
+    label: "Dart",
+    value: "dart",
+  },
 ];

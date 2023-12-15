@@ -1,6 +1,5 @@
 import { AUTH_TOKEN } from "../config/const";
-
-export const BASE_API = "http://192.168.17.34:8081";
+import axiosInstance, { BASE_API } from "../https";
 
 export const getInteractions = async () => {
   try {
@@ -21,23 +20,6 @@ export const getInteractions = async () => {
   }
 };
 
-export const saveInteractions = async (data) => {
-  try {
-    const token = localStorage.getItem(AUTH_TOKEN);
-
-    const response = await fetch(`${BASE_API}/interactions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
-
-    const rawResponse = response.json();
-
-    return rawResponse;
-  } catch (error) {
-    console.log("ERror", error);
-  }
+export const saveInteractionsApi = (data) => {
+  return axiosInstance.post(`${BASE_API}/interactions`, data);
 };

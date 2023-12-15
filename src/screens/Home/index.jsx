@@ -1,21 +1,24 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Input, Form, Select } from "antd";
+import { Input, Form, Select, Button } from "antd";
 import { listLanguages } from "../../utils/common";
-import { saveInteractions } from "../../utils/api";
 import { HomeContextProvider } from "../../App";
 import { jwtDecode } from "jwt-decode";
 import { isLogin } from "../../utils";
+import ReactQuill from "react-quill";
+import { modules } from "../../config/quill";
+import useQuestionAction from "../../hooks/useQuestionAction";
 
 const { TextArea } = Input;
 
 const HomeScreen = () => {
   const { accessToken } = useContext(HomeContextProvider);
   const [form] = Form.useForm();
+  const { saveInteractions } = useQuestionAction();
 
   useEffect(() => {
     if (!isLogin()) {
       window.location.href =
-        "https://dev.sso.lifesup.com.vn/auth?client_id=lifesup_hrm&redirect_uri=http://localhost:4200&scope=read";
+        "https://dev.sso.lifesup.com.vn/auth?client_id=lifesup_hrm&redirect_uri=https://tool-gpt.vercel.app&scope=read";
     }
   }, []);
 
@@ -31,11 +34,15 @@ const HomeScreen = () => {
 
     form.resetFields();
 
-    saveInteractions({ ...values });
+    saveInteractions.mutate({
+      ...values,
+      userIdentifier: `${userInfo.firstName} ${userInfo.lastName}`,
+    });
   };
 
-  const filterOption = (input, option) =>
-    option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+  const filterOption = (input, option) => {
+    return option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+  };
 
   return (
     <div className="relative w-screen h-screen bg-blue-400">
@@ -92,7 +99,15 @@ const HomeScreen = () => {
               },
             ]}
           >
-            <TextArea placeholder="Nhập câu trả lời" rows={4} />
+            <ReactQuill
+              theme="snow"
+              modules={modules}
+              style={{
+                maxHeight: "200px",
+                height: "200px",
+                marginBottom: "60px",
+              }}
+            />
           </Form.Item>
 
           <Form.Item
@@ -136,7 +151,17 @@ const HomeScreen = () => {
             <p className="text-red-500 mt-1">{errorMessage["conversation"]}</p>
           )}
 
-          <button type="submit">Gửi</button>
+          <Button
+            type="primary"
+            loading={saveInteractions.isPending}
+            htmlType="submit"
+            style={{
+              background: "#5284e7",
+              width: "100%",
+            }}
+          >
+            Gửi
+          </Button>
         </Form>
       </div>
     </div>
