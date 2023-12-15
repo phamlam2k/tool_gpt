@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AUTH_TOKEN } from "./config/const";
 
-export const BASE_API = "192.168.17.34:8081";
+export const BASE_API = "//192.168.17.34:8081";
 
 const axiosInstance = axios.create({
   baseURL: BASE_API,
