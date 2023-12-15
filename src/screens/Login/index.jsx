@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import { HomeContextProvider } from "../../App";
 import { AUTH_TOKEN } from "../../config/const";
 import { useNavigate } from "react-router-dom";
+import { LoadingOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
@@ -26,10 +28,7 @@ const LoginScreen = () => {
 
   return (
     <div className="relative w-screen h-screen bg-blue-400">
-      <div className="flex flex-col justify-center absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] bg-white px-[30px] py-[20px] rounded-lg">
-        <p className="text-[24px] font-bold">Đăng nhập để sử dụng form</p>
-        <div className="mt-2"></div>
-      </div>
+      <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
     </div>
   );
 };
