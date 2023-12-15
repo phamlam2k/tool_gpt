@@ -20,7 +20,7 @@ const LoginScreen = () => {
 
     if (!!!localStorage.getItem(AUTH_TOKEN) && !accessToken) {
       window.location.href =
-        "https://dev.sso.lifesup.com.vn/auth?client_id=lifesup_hrm&redirect_uri=https://tool-gpt.vercel.app&scope=read";
+        "https://dev.sso.lifesup.com.vn/auth?client_id=lifesup_hrm&redirect_uri=https://tool-gpt.vercel.app/&scope=read";
     }
   }, [accessToken, navigate, setAccessToken]);
 
