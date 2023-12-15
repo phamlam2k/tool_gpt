@@ -7,6 +7,7 @@ import { isLogin } from "../../utils";
 import ReactQuill from "react-quill";
 import { modules } from "../../config/quill";
 import useQuestionAction from "../../hooks/useQuestionAction";
+import { SSO_URL } from "../../config/const";
 
 const { TextArea } = Input;
 
@@ -17,8 +18,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     if (!isLogin()) {
-      window.location.href =
-        "https://sso.lifesup.com.vn/auth?client_id=lifesup_hrm&redirect_uri=https://tool-gpt.vercel.app&scope=read";
+      window.location.href = window.location.href = SSO_URL;
     }
   }, []);
 

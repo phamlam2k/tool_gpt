@@ -8,6 +8,9 @@ const useQuestionAction = () => {
     onSuccess: (data) => {
       message.success(data.data.message);
     },
+    onError: () => {
+      message.error("Interaction created failed");
+    },
   });
 
   return {
