@@ -18,7 +18,7 @@ const HomeScreen = () => {
   useEffect(() => {
     if (!isLogin()) {
       window.location.href =
-        "https://sso.lifesup.com.vn/auth?client_id=tool-gpt&redirect_uri=https://tool-gpt.vercel.app&scope=read";
+        "https://sso.lifesup.com.vn/auth?client_id=lifesup_hrm&redirect_uri=https://tool-gpt.vercel.app&scope=read";
     }
   }, []);
 
