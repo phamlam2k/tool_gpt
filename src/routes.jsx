@@ -1,5 +1,7 @@
-import HomeScreen from "./screens/Home";
-import LoginScreen from "./screens/Login";
+import PrivateLayout from "./layout/PrivateLayout";
+import HomeScreen from "./screens/Home/HomeScreen";
+import LoginScreen from "./screens/Login/LoginScreen";
+import PromptScreen from "./screens/Prompt/PromptScreen";
 
 export const routes = [
   {
@@ -10,6 +12,19 @@ export const routes = [
   {
     id: 2,
     path: "/home",
-    element: <HomeScreen />,
+    element: (
+      <PrivateLayout>
+        <HomeScreen />
+      </PrivateLayout>
+    )
+  },
+  {
+    id: 3,
+    path: "/prompt",
+    element: (
+      <PrivateLayout>
+        <PromptScreen />
+      </PrivateLayout>
+    )
   },
 ];

@@ -1,10 +1,11 @@
 import axios from "axios";
 import { AUTH_TOKEN } from "./config/const";
 
-export const BASE_API = "https://103.226.250.83:8443";
+export const BASE_API = "https://103.226.250.83:8443/api";
 
 const axiosInstance = axios.create({
   baseURL: BASE_API,
+  withCredentials: false,
   headers: {
     hasUserAgent: false,
   },

@@ -7,3 +7,9 @@
   margin: 0;
   padding: 0;
 }
+
+/* styles.css */
+.breadcrumb_header:where(.css-dev-only-do-not-override-6j9yrn).ant-breadcrumb
+  li:last-child {
+  color: white;
+}

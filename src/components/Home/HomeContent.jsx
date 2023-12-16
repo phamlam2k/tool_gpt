@@ -1,26 +1,18 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { Input, Form, Select, Button } from "antd";
 import { listLanguages } from "../../utils/common";
 import { HomeContextProvider } from "../../App";
 import { jwtDecode } from "jwt-decode";
-import { isLogin } from "../../utils";
 import ReactQuill from "react-quill";
 import { modules } from "../../config/quill";
 import useQuestionAction from "../../hooks/useQuestionAction";
-import { SSO_URL } from "../../config/const";
 
 const { TextArea } = Input;
 
-const HomeScreen = () => {
+const HomeContent = () => {
   const { accessToken } = useContext(HomeContextProvider);
   const [form] = Form.useForm();
   const { saveInteractions } = useQuestionAction();
-
-  useEffect(() => {
-    if (!isLogin()) {
-      window.location.href = window.location.href = SSO_URL;
-    }
-  }, []);
 
   const userInfo = useMemo(() => {
     if (!accessToken) return null;
@@ -168,4 +160,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default HomeContent;

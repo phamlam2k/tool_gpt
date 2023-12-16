@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 
-const LoginScreen = () => {
+const LoginContent = () => {
   const navigate = useNavigate();
   const { accessToken, setAccessToken } = useContext(HomeContextProvider);
 
@@ -36,4 +36,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default LoginContent;
