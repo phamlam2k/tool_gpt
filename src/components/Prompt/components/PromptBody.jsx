@@ -15,7 +15,7 @@ const PromptBody = () => {
     setCurrentPage(page);
   };
 
-  if (!questionList.data.data) {
+  if (questionList.isError) {
     return <></>
   }
 

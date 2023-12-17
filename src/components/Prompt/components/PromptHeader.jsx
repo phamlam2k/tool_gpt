@@ -49,7 +49,7 @@ const PromptHeader = () => {
           )}
         </div>
       </div>
-      <div className="max-w-screen-xl mx-auto flex justify-start space-x-4 p-4 border-t border-gray-600">
+      <div className="max-w-screen-xl mx-auto flex flex-wrap justify-start gap-4 p-4 border-t border-gray-600">
         {listLanguages.map(item => (
           <div key={item.value} onClick={() => setSelectedCategory(item)} className="cursor-pointer hover:text-gray-300 flex items-center">
             <item.Icon className="mr-2" />
@@ -66,7 +66,7 @@ const PromptHeader = () => {
           {selectedCategory && <Breadcrumb.Item className='text-white'>{selectedCategory.label}</Breadcrumb.Item>}
         </Breadcrumb>
         <div className="flex justify-between items-center mt-4">
-          <p>Showing {questionList.data.data.length} results</p>
+          <p>Showing {questionList.isSuccess && questionList.data.data.length} results</p>
           <Select defaultValue="latest" value={sortValue} onChange={handleSortChange} className="w-32">
             <Option value="latest">Sort by name</Option>
             <Option value="price">Sort by order</Option>
