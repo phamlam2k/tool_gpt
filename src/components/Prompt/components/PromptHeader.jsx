@@ -1,11 +1,12 @@
 import React, { useState, useMemo, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, Select } from 'antd';
+import { Breadcrumb, Select, Popover } from 'antd';
 import { jwtDecode } from 'jwt-decode';
 import { HomeContextProvider } from '../../../App';
 import { listLanguages } from '../../../utils/common';
 import useDataStore from '../../../store/useDataStore';
 import useQuestionData from '../../../hooks/useQuestionData';
+import { AUTH_TOKEN, SSO_URL } from '../../../config/const';
 
 const { Option } = Select;
 
@@ -16,11 +17,17 @@ const topNavItems = [
 ];
 
 const PromptHeader = () => {
-  const { accessToken } = useContext(HomeContextProvider);
+  const { accessToken, setAccessToken } = useContext(HomeContextProvider);
   const { questionList } = useQuestionData()
 
   const { selectedCategory, setSelectedCategory } = useDataStore();
   const [sortValue, setSortValue] = useState('latest');
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpenChange = (newOpen) => {
+    setOpen(newOpen);
+  };
 
   const handleSortChange = value => {
     setSortValue(value);
@@ -32,6 +39,12 @@ const PromptHeader = () => {
     return jwtDecode(accessToken);
   }, [accessToken]);
 
+  const onLogout = () => {
+    localStorage.removeItem(AUTH_TOKEN)
+    setAccessToken(null)
+    window.location.href = window.location.href = SSO_URL;
+  }
+
   return (
     <div className="bg-[#222236] text-white">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center p-4">
@@ -42,11 +55,19 @@ const PromptHeader = () => {
               {item.name}
             </Link>
           ))}
-          {userInfo ? (
-            <span className="ml-4">{userInfo.firstName} {userInfo.lastName}</span>
-          ) : (
-            <Link to="/login" className="hover:text-gray-300">Login/Sign up</Link>
-          )}
+          <Popover
+            content={<div onClick={onLogout}>Log out</div>}
+            trigger="click"
+            open={open}
+            onOpenChange={handleOpenChange}
+            placement='bottomRight'
+          >
+            {userInfo ? (
+              <span className="ml-4 cursor-pointer bg-white py-2 px-3 rounded-md text-[#222236]">{userInfo.firstName} {userInfo.lastName}</span>
+            ) : (
+              <Link to="/login" className="hover:text-gray-300">Login/Sign up</Link>
+            )}
+          </Popover>
         </div>
       </div>
       <div className="max-w-screen-xl mx-auto flex flex-wrap justify-start gap-4 p-4 border-t border-gray-600">

@@ -39,10 +39,10 @@ const HomeContent = () => {
 
   return (
     <div className="relative w-screen h-screen bg-[#222236]">
-      <Link to={"/prompt"} className="absolute top-[10px] left-[10px] bg-white p-[10px] rounded-md text-[#222236]">
+      <Link to={"/prompt"} className="absolute z-[100] top-[10px] left-[10px] bg-white p-[10px] rounded-md text-[#222236]">
         Quay lại trang Prompt
       </Link>
-      {userInfo && (
+      {/* {userInfo && (
         <div
           className="absolute top-[30px] right-[20px] bg-white flex"
           style={{
@@ -56,7 +56,7 @@ const HomeContent = () => {
             {userInfo.firstName} {userInfo.lastName}
           </p>
         </div>
-      )}
+      )} */}
       <div className="flex flex-col justify-center absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] bg-white px-[30px] py-[20px] rounded-lg">
         <p className="text-center text-[25px] font-bold">
           Thu thập câu hỏi ChatGPT
@@ -68,7 +68,7 @@ const HomeContent = () => {
           autoComplete="off"
           layout="vertical"
           style={{
-            width: 600,
+            minWidth: 300,
             margin: "20px auto",
           }}
         >
@@ -101,8 +101,8 @@ const HomeContent = () => {
               style={{
                 maxHeight: "200px",
                 height: "200px",
-                marginBottom: "60px",
               }}
+              className="xl:mb-[60px] max-sm:mb-[100px]"
             />
           </Form.Item>
 
