@@ -26,7 +26,7 @@ const LoginContent = () => {
   }, [accessToken, navigate, setAccessToken]);
 
   return (
-    <div className="relative w-screen h-screen bg-blue-400 flex justify-center items-center">
+    <div className="relative w-screen h-screen bg-[#222236] flex justify-center items-center">
       <Spin
         indicator={
           <LoadingOutlined style={{ fontSize: 100, color: "#fff" }} spin />
