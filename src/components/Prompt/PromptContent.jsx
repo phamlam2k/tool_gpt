@@ -4,10 +4,10 @@ import PromptBody from './components/PromptBody';
 
 const PromptContent = () => {
   return (
-    <>
+    <div className='bg-[#222236] '>
       <PromptHeader />
       <PromptBody />
-    </>
+    </div>
   )
 }
 

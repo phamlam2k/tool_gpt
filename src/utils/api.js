@@ -1,7 +1,19 @@
 import axiosInstance, { BASE_API } from "../https";
 
-export const getInteractionsApi = () => {
-  return axiosInstance.get(`${BASE_API}/interactions`);
+export const getInteractionsApi = async ({
+  currentPage,
+  selectedCategory,
+  itemsPerPage,
+}) => {
+  let url = `${BASE_API}/interactions`;
+
+  if (selectedCategory) {
+    url = url + `/topic/${selectedCategory.value}`;
+  }
+
+  const { data } = await axiosInstance.get(url);
+
+  return data.data;
 };
 
 export const saveInteractionsApi = (data) => {

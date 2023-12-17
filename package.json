@@ -11,6 +11,7 @@
     "antd": "^5.12.1",
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
+    "dompurify": "^3.0.6",
     "https": "^1.0.0",
     "https-browserify": "^1.0.0",
     "jwt-decode": "^4.0.0",
@@ -20,7 +21,8 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.21.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.4.7"
   },
   "scripts": {
     "start": "set PORT=4200 && react-scripts start",

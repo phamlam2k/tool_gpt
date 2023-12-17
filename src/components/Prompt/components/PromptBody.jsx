@@ -1,26 +1,19 @@
 import useQuestionData from "../../../hooks/useQuestionData"
 import PromptItem from "./PromptItem";
 
-const data = {
-  "interactionId": 3,
-  "userIdentifier": "long vu",
-  "promptText": "aaaaaaaaaaaaaaaaaaaa",
-  "responseText": "<p>aaaaaaaaaaaaaaaaaaaaaaaaaaa</p>",
-  "timestamp": "2023-12-15T17:45:16.320286",
-  "responseTime": null,
-  "qualityScore": null,
-  "topic": "js",
-  "feedback": "aaaaaaaaaaaaaaaaaaa"
-};
-
-
 const PromptBody = () => {
   const { questionList } = useQuestionData()
 
-  console.log({ questionList: questionList.data })
-
   return (
-    <PromptItem data={data} />
+    <div className="grid border-t border-gray-600 pt-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 max-md:container lg:w-[1300px] mx-auto">
+      {
+        questionList.data.map(data => {
+          return (
+            <PromptItem data={data} key={data.interactionId} />
+          )
+        })
+      }
+    </div>
   )
 }
 

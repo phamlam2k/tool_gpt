@@ -9,7 +9,6 @@
 }
 
 /* styles.css */
-.breadcrumb_header:where(.css-dev-only-do-not-override-6j9yrn).ant-breadcrumb
-  li:last-child {
+.breadcrumb_header .ant-breadcrumb-separator {
   color: white;
 }
