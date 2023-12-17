@@ -15,6 +15,10 @@ const PromptBody = () => {
     setCurrentPage(page);
   };
 
+  if (!questionList.data.data) {
+    return <></>
+  }
+
   return (
     <div className="py-[20px]">
       <div className={`${questionList.data.data.length !== 0 && "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3"} border-t border-gray-600 pt-10 gap-4 p-4 max-md:container xl:w-[1300px] mx-auto`}>
