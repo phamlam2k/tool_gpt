@@ -17,7 +17,7 @@ const LoginContent = () => {
     if (token) {
       localStorage.setItem(AUTH_TOKEN, token.replace("=", ""));
       setAccessToken(token.replace("=", ""));
-      navigate("/home");
+      navigate("/prompt");
     }
 
     if (!!!localStorage.getItem(AUTH_TOKEN) && !accessToken) {

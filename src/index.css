@@ -12,3 +12,46 @@
 .breadcrumb_header .ant-breadcrumb-separator {
   color: white;
 }
+
+.code_block .ql-syntax {
+  background-color: black;
+  color: white;
+  padding: 15px;
+  margin: 10px auto;
+  overflow-x: auto;
+}
+
+/* CustomPagination.css */
+
+.custom-pagination .ant-pagination {
+  /* Add your custom styles here */
+  /* For example, change the color of the pagination items */
+  color: white;
+}
+
+.custom-pagination .ant-pagination-item {
+  /* Custom styles for the individual page numbers */
+  border-color: #d9d9d9;
+}
+
+.custom-pagination .ant-pagination-item a {
+  /* Custom styles for the individual page numbers */
+  color: white;
+}
+
+.custom-pagination .ant-pagination-item-active a {
+  /* Styles for the active page number */
+  font-weight: bold;
+  color: black !important;
+}
+
+.custom-pagination .ant-pagination-item-link svg {
+  fill: white;
+}
+
+.skeleton_card
+  :where(
+    .css-dev-only-do-not-override-6j9yrn
+  ).ant-skeleton.ant-skeleton-element {
+  width: 100%;
+}

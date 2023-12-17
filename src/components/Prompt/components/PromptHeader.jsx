@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { HomeContextProvider } from '../../../App';
 import { listLanguages } from '../../../utils/common';
 import useDataStore from '../../../store/useDataStore';
+import useQuestionData from '../../../hooks/useQuestionData';
 
 const { Option } = Select;
 
@@ -16,13 +17,9 @@ const topNavItems = [
 
 const PromptHeader = () => {
   const { accessToken } = useContext(HomeContextProvider);
+  const { questionList } = useQuestionData()
 
-  const { selectedCategory, setSelectedCategory } = useDataStore(
-    (state) => ({
-      selectedCategory: state.selectedCategory,
-      setSelectedCategory: state.setSelectedCategory,
-    })
-  );
+  const { selectedCategory, setSelectedCategory } = useDataStore();
   const [sortValue, setSortValue] = useState('latest');
 
   const handleSortChange = value => {
@@ -69,11 +66,10 @@ const PromptHeader = () => {
           {selectedCategory && <Breadcrumb.Item className='text-white'>{selectedCategory.label}</Breadcrumb.Item>}
         </Breadcrumb>
         <div className="flex justify-between items-center mt-4">
-          <p>Showing all results</p>
+          <p>Showing {questionList.data.data.length} results</p>
           <Select defaultValue="latest" value={sortValue} onChange={handleSortChange} className="w-32">
-            <Option value="latest">Sort by latest</Option>
-            <Option value="price">Sort by price</Option>
-            {/* ... other sorting options ... */}
+            <Option value="latest">Sort by name</Option>
+            <Option value="price">Sort by order</Option>
           </Select>
         </div>
       </div>

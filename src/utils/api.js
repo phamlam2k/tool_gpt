@@ -5,13 +5,20 @@ export const getInteractionsApi = async ({
   selectedCategory,
   itemsPerPage,
 }) => {
-  let url = `${BASE_API}/interactions`;
-
-  if (selectedCategory) {
-    url = url + `/topic/${selectedCategory.value}`;
+  if (!selectedCategory) {
+    return {
+      totalItems: 0,
+      data: [],
+      totalPages: 0,
+      currentPage: 0,
+    };
   }
 
-  const { data } = await axiosInstance.get(url);
+  const { data } = await axiosInstance.get(
+    `${BASE_API}/interactions/topic/${selectedCategory.value}?page=${
+      currentPage - 1
+    }&size=${itemsPerPage}`
+  );
 
   return data.data;
 };

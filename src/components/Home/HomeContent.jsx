@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import ReactQuill from "react-quill";
 import { modules } from "../../config/quill";
 import useQuestionAction from "../../hooks/useQuestionAction";
+import { Link } from "react-router-dom";
 
 const { TextArea } = Input;
 
@@ -37,7 +38,10 @@ const HomeContent = () => {
   };
 
   return (
-    <div className="relative w-screen h-screen bg-blue-400">
+    <div className="relative w-screen h-screen bg-[#222236]">
+      <Link to={"/prompt"} className="absolute top-[10px] left-[10px] bg-white p-[10px] rounded-md text-[#222236]">
+        Quay lại trang Prompt
+      </Link>
       {userInfo && (
         <div
           className="absolute top-[30px] right-[20px] bg-white flex"
@@ -148,7 +152,7 @@ const HomeContent = () => {
             loading={saveInteractions.isPending}
             htmlType="submit"
             style={{
-              background: "#5284e7",
+              background: "#222236",
               width: "100%",
             }}
           >

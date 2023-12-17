@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
-import { Card, Modal } from 'antd';
+import { Card, Skeleton } from 'antd';
+import useCommonStore from '../../../store/useCommonStore';
+
+export const PromptItemSkeleton = () => (
+  <Card className="rounded overflow-hidden shadow-lg bg-white skeleton_card" style={{ width: '100%' }}>
+    <Skeleton.Image style={{ width: '100%', height: '200px' }} />
+    <Card.Meta
+      title={<Skeleton.Input style={{ width: '100%', marginTop: '10px' }} active size='small' />}
+    />
+    <Card.Meta
+      title={<Skeleton.Input style={{ width: '60%', marginTop: '10px' }} active size='small' />}
+      description={<Skeleton.Input style={{ width: '80%' }} active size='small' />}
+    />
+  </Card>
+);
 
 const PromptItem = ({ data }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
+  const { setSelectedPrompt } = useCommonStore()
 
   const formattedDate = dayjs(data.timestamp).format('MMMM D, YYYY');
   const imageSrc = `/images/${data.topic}.webp`;
@@ -20,7 +25,9 @@ const PromptItem = ({ data }) => {
   return (
     <Card
       hoverable
-      onClick={showModal}
+      onClick={() => {
+        setSelectedPrompt(data)
+      }}
       className="rounded overflow-hidden shadow-lg bg-white"
       bodyStyle={{ padding: 0 }} // Remove padding from the antd card body
       style={{ width: '100%' }} // Make the card width 100% of the grid column
@@ -34,18 +41,6 @@ const PromptItem = ({ data }) => {
         <p className="text-gray-600 text-xs">{formattedDate}</p>
       </div>
 
-      <Modal
-        title={data.promptText}
-        visible={isModalVisible}
-        onCancel={handleCancel}
-        footer={null} // Removes the default footer
-      >
-        {/* Modal content goes here */}
-        <div dangerouslySetInnerHTML={{ __html: data.responseText }} />
-        <p>by {data.userIdentifier}</p>
-        <p>{formattedDate}</p>
-        {/* You can add more content or structure it according to your data */}
-      </Modal>
     </Card>
   );
 };

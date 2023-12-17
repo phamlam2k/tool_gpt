@@ -4,13 +4,7 @@ import { QUERY_KEYS } from "../config/keys";
 import useDataStore from "../store/useDataStore";
 
 const useQuestionData = () => {
-  const { currentPage, selectedCategory, itemsPerPage } = useDataStore(
-    (state) => ({
-      currentPage: state.currentPage,
-      selectedCategory: state.selectedCategory,
-      itemsPerPage: state.itemsPerPage,
-    })
-  );
+  const { currentPage, selectedCategory, itemsPerPage } = useDataStore();
 
   const questionList = useQuery({
     queryKey: [
@@ -25,7 +19,12 @@ const useQuestionData = () => {
         selectedCategory,
         itemsPerPage,
       }),
-    placeholderData: [],
+    placeholderData: {
+      totalItems: 0,
+      data: [],
+      totalPages: 0,
+      currentPage: 0,
+    },
   });
 
   return {
