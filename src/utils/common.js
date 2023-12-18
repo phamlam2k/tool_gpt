@@ -3,7 +3,6 @@ import {
   FaPython,
   FaJsSquare,
   FaReact,
-  FaCuttlefish,
   FaAngular,
   FaFigma,
 } from "react-icons/fa";

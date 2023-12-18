@@ -11,12 +11,12 @@ export const routes = [
   },
   {
     id: 2,
-    path: "/home",
+    path: "/collect_form",
     element: (
       <PrivateLayout>
         <HomeScreen />
       </PrivateLayout>
-    )
+    ),
   },
   {
     id: 3,
@@ -25,6 +25,6 @@ export const routes = [
       <PrivateLayout>
         <PromptScreen />
       </PrivateLayout>
-    )
+    ),
   },
 ];

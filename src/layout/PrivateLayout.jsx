@@ -9,7 +9,7 @@ const PrivateLayout = ({ children }) => {
     }
   }, []);
 
-  return children
-}
+  return children;
+};
 
-export default PrivateLayout
+export default PrivateLayout;
