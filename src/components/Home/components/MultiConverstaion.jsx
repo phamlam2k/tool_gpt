@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Upload, Input } from "antd";
+import { Upload, Input, Button } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import DOMPurify from "dompurify";
-import SupportModal from "../../../modals/SupportModal";
 
 const { TextArea } = Input;
 
@@ -11,15 +10,6 @@ const { Dragger } = Upload;
 const MultiConversation = () => {
   const [conversationState, setConversationState] = useState([]);
   const [fileList, setFileList] = useState([]);
-  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
-
-  const handleOpenSupportModal = () => {
-    setIsSupportModalOpen(true);
-  };
-
-  const handleCloseSupportModal = () => {
-    setIsSupportModalOpen(false);
-  };
 
   const handleFileRead = (e) => {
     const content = e.target.result;
@@ -89,42 +79,56 @@ const MultiConversation = () => {
       </Dragger>
 
       {conversationState.length > 0 && (
-        <div className="h-[500px] overflow-y-auto">
-          {conversationState.map((conversation, index) => (
-            <div
-              key={index}
-              className="conversation-step py-2 pb-7 mb-2 border-b border-gray-200"
-            >
-              <p className="user-question-title font-semibold text-lg mb-2">
-                Câu hỏi của người dùng:
-              </p>
+        <div className="mt-[10px]">
+          <div className="h-[400px] overflow-y-auto">
+            {conversationState.map((conversation, index) => (
               <div
-                className="user-question-content bg-gray-100 rounded text-black"
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(conversation.question),
-                }}
-              />
+                key={index}
+                className="conversation-step py-2 pb-7 mb-2 border-b border-gray-200"
+              >
+                <p className="user-question-title font-semibold text-lg mb-2">
+                  Câu hỏi của người dùng:
+                </p>
+                <div
+                  className="user-question-content bg-gray-100 rounded text-black"
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(conversation.question),
+                  }}
+                />
 
-              <p className="chatgpt-reply-title font-semibold text-lg mt-4 mb-2">
-                Câu trả lời của ChatGPT:
-              </p>
-              <div
-                className="chatgpt-reply-content bg-gray-100 rounded text-black"
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(conversation.answer),
-                }}
-              />
+                <p className="chatgpt-reply-title font-semibold text-lg mt-4 mb-2">
+                  Câu trả lời của ChatGPT:
+                </p>
+                <div
+                  className="chatgpt-reply-content bg-gray-100 rounded text-black"
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(conversation.answer),
+                  }}
+                />
 
-              <p className="desired-reply-title font-semibold text-lg mt-4 mb-2">
-                Câu trả lời mong muốn:
-              </p>
-              <TextArea
-                rows={4}
-                className="w-full p-2 border border-gray-300 rounded-md"
-                placeholder="Nhập câu trả lời mong muốn của bạn"
-              />
-            </div>
-          ))}
+                <p className="desired-reply-title font-semibold text-lg mt-4 mb-2">
+                  Câu trả lời mong muốn:
+                </p>
+                <TextArea
+                  rows={4}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="Nhập câu trả lời mong muốn của bạn"
+                />
+              </div>
+            ))}
+          </div>
+
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{
+              background: "#222236",
+              width: "100%",
+              marginTop: "20px",
+            }}
+          >
+            Gửi
+          </Button>
         </div>
       )}
     </div>
