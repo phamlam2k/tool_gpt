@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AUTH_TOKEN } from "./config/const";
 
-export const BASE_API = "https://103.226.250.83:8443/api";
+export const BASE_API = "http://chatgpt.lifesup.com.vn";
 
 const axiosInstance = axios.create({
   baseURL: BASE_API,
