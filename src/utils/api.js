@@ -4,6 +4,9 @@ export const getInteractionsApi = async ({
   currentPage,
   selectedCategory,
   itemsPerPage,
+  keyword,
+  sortDir,
+  sortBy,
 }) => {
   if (!selectedCategory) {
     return {
@@ -17,7 +20,7 @@ export const getInteractionsApi = async ({
   const { data } = await axiosInstance.get(
     `${BASE_API}/interactions/topic/${selectedCategory.value}?page=${
       currentPage - 1
-    }&size=${itemsPerPage}`
+    }&size=${itemsPerPage}&otherParameter=${keyword}&sortDir=${sortDir}&sortBy=${sortBy}`
   );
 
   return data.data;

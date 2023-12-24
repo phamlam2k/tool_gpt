@@ -4,7 +4,14 @@ import { QUERY_KEYS } from "../config/keys";
 import useDataStore from "../store/useDataStore";
 
 const useQuestionData = () => {
-  const { currentPage, selectedCategory, itemsPerPage } = useDataStore();
+  const {
+    currentPage,
+    selectedCategory,
+    itemsPerPage,
+    keyword,
+    sortDir,
+    sortBy,
+  } = useDataStore();
 
   const questionList = useQuery({
     queryKey: [
@@ -12,12 +19,18 @@ const useQuestionData = () => {
       currentPage,
       selectedCategory,
       itemsPerPage,
+      keyword,
+      sortDir,
+      sortBy,
     ],
     queryFn: () =>
       getInteractionsApi({
         currentPage,
         selectedCategory,
         itemsPerPage,
+        keyword,
+        sortDir,
+        sortBy,
       }),
     placeholderData: {
       totalItems: 0,

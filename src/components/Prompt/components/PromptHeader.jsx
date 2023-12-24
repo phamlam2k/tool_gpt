@@ -21,8 +21,7 @@ const PromptHeader = () => {
   const { accessToken, setAccessToken } = useContext(HomeContextProvider);
   const { questionList } = useQuestionData();
 
-  const { selectedCategory, setSelectedCategory, setKeyword } = useDataStore();
-  const [sortValue, setSortValue] = useState("latest");
+  const { selectedCategory, setSelectedCategory, setKeyword, sortDir, setSortDir, sortBy, setSortBy } = useDataStore();
 
   const [inputValue, setInputValue] = useState("");
   const debouncedSearchTerm = useDebounce(inputValue, 1000); // 1s debounce
@@ -41,8 +40,13 @@ const PromptHeader = () => {
     setOpen(newOpen);
   };
 
-  const handleSortChange = (value) => {
-    setSortValue(value);
+  const handleSortDir = (value) => {
+    setSortDir(value);
+    // Integrate the actual sorting functionality here
+  };
+
+  const handleSortBy = (value) => {
+    setSortBy(value);
     // Integrate the actual sorting functionality here
   };
 
@@ -130,15 +134,30 @@ const PromptHeader = () => {
             style={{ width: 200, marginRight: "10px" }}
           />
 
-          <Select
-            defaultValue="latest"
-            value={sortValue}
-            onChange={handleSortChange}
-            className="w-32"
-          >
-            <Option value="latest">Sort by name</Option>
-            <Option value="price">Sort by order</Option>
-          </Select>
+          <div className="flex gap-3">
+            <Select
+              defaultValue=""
+              value={sortBy}
+              className="w-32"
+              onChange={handleSortBy}
+            >
+              <Option value="" disabled>Select sort by</Option>
+              <Option value="feedback">Feedback</Option>
+              <Option value="prompt_text">Prompt Text</Option>
+              <Option value="response_text">Response Text</Option>
+              <Option value="user_identifier">User Identifier</Option>
+            </Select>
+
+            <Select
+              defaultValue="desc"
+              value={sortDir}
+              onChange={handleSortDir}
+              className="w-32"
+            >
+              <Option value="desc">Des</Option>
+              <Option value="asc">Asc</Option>
+            </Select>
+          </div>
         </div>
       </div>
     </div>

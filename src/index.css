@@ -49,10 +49,28 @@
   fill: white;
 }
 
-.skeleton_card :where(.css-dev-only-do-not-override-6j9yrn).ant-skeleton.ant-skeleton-element {
+.skeleton_card
+  :where(
+    .css-dev-only-do-not-override-6j9yrn
+  ).ant-skeleton.ant-skeleton-element {
   width: 100%;
 }
 
 .multi_qus code {
   color: white;
+}
+
+.multi_qus pre {
+  width: 100%;
+  background-color: black;
+  color: white;
+  word-wrap: break-word;
+}
+
+.multi_qus img {
+  width: 30px;
+}
+
+.multi_qus .chatgpt-reply-content {
+  word-wrap: break-word;
 }

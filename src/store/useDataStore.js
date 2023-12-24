@@ -13,6 +13,12 @@ const useDataStore = create((set) => ({
 
   keyword: "",
   setKeyword: (keyword) => set({ keyword: keyword }),
+
+  sortDir: "desc",
+  setSortDir: (sortDir) => set({ sortDir: sortDir }),
+
+  sortBy: "",
+  setSortBy: (sortBy) => set({ sortBy: sortBy }),
 }));
 
 export default useDataStore;
